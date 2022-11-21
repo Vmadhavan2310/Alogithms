@@ -1,0 +1,42 @@
+let portfolio = [
+  { name: "Mark", stock: "FB" },
+  { name: "Steve", stock: "APPL" },
+  { name: "Tim", stock: "APPL" },
+  { name: "Steve", stock: "MSFT" },
+  { name: "Bill", stock: "MSFT" },
+  { name: "Micheal", stock: "MSFT" },
+  { name: "Janos", stock: "MSFT" },
+  { name: "Mark", stock: "APPL" },
+   { name: "Josh", stock: "BML" },
+   { name: "Will", stock: "BML" },
+];
+
+/* /* Output =[
+{stock:"APPL", name:["Steve", "Tim", "Bill"],count:3},
+{stock:"MSFT", name:["Steve", "Bill"],count:2},
+{stock:"FB", name:["Mark"],count:1},
+] * */
+
+function stockOutput(value) {
+  let final=[]
+  const stock = new Set()
+  for (let el of value) {
+    stock.add(el.stock)
+  }
+  let stockUnique = Array.from(stock)
+  let result=[]
+    function findName(arr,stocks){
+      return arr.filter(el=>el.stock===stocks)
+    }
+ for(let el of stockUnique){
+   result.push(findName(value,el))
+ }
+  for(let el of result){
+    final.push({stock:el[0].stock,name:el.map(el=>el.name),count:el.length})
+  }
+ return final.sort(
+    (p1, p2) => (p1.count < p2.count) ? 1 : (p1.count > p2.count) ? -1 : 0);
+}
+
+
+console.log(stockOutput(portfolio))
