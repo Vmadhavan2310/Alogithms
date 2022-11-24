@@ -1,0 +1,22 @@
+/*Memoization  */
+let memos={}
+function memo(a,b){
+  let props=a.toString()+b.toString()
+  if(memos[props]){
+    return `Memoized values of ${a} & ${b} is ${memos[props]}`
+  }
+   const add=(a,b)=>{
+     let res=a+b
+    memos[props]=res
+    return `addition values of ${a} & ${b} is ${res}`
+  }
+return(add(a,b))
+
+}
+
+console.log(memo(5,5))
+console.log(memo(5,2))
+console.log(memo(5,7))
+console.log(memo(5,2))
+console.log(memo(2,5))
+console.log(memo(5,5))
