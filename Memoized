@@ -20,3 +20,12 @@ console.log(memo(5,7))
 console.log(memo(5,2))
 console.log(memo(2,5))
 console.log(memo(5,5))
+
+
+//Output
+addition values of 5 & 5 is 10
+addition values of 5 & 2 is 7
+addition values of 5 & 7 is 12
+Memoized values of 5 & 2 is 7
+addition values of 2 & 5 is 7
+Memoized values of 5 & 5 is 10
