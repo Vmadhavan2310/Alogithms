@@ -1,0 +1,58 @@
+class GraphList{
+
+constructor(){
+this.adjacencyList={}
+}
+//Add vertex
+addVertice(vertex){
+if(!this.adjacencyList[vertex]){
+this.adjacencyList[vertex]=new Set();
+}
+}
+//Add Edge
+addEdge(vertex1,vertex2){
+this.addVertice(vertex1);
+this.addVertice(vertex2);
+this.adjacencyList[vertex1].add(vertex2);
+this.adjacencyList[vertex2].add(vertex1);
+}
+
+//Checking Edges presented
+hasEdge(vertex1,vertex2){
+return (this.adjacencyList[vertex1].has(vertex2) && this.adjacencyList[vertex2].has(vertex1))
+}
+//Remove Edges
+removeEdges(vertex1,vertex2){
+this.adjacencyList[vertex1].delete(vertex2);
+this.adjacencyList[vertex2].delete(vertex1);
+}
+//Remove Vertex
+removeVertex(vertex){
+if(!this.adjacencyList[vertex]) return;
+for(let adjacencvertex in this.adjacencyList){
+this.removeEdges(vertex,adjacencvertex);
+}
+delete this.adjacencyList[vertex]
+}
+//Display Edges between vertices
+displayEdges(){
+for(let vertex in this.adjacencyList){
+console.log(vertex+"---"+ [...this.adjacencyList[vertex]])
+}
+}
+}
+
+const graph=new GraphList();
+graph.addVertice("A");
+graph.addVertice("B");
+graph.addVertice("C");
+graph.addEdge("A","C");
+graph.addEdge("B","C");
+graph.displayEdges();
+console.log(graph.hasEdge("B","A"))
+graph.removeEdges("A","C");
+graph.displayEdges();
+graph.addEdge("A","B");
+graph.displayEdges();
+graph.removeVertex("B");
+graph.displayEdges();
