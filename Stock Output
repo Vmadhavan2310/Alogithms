@@ -40,3 +40,26 @@ function stockOutput(value) {
 
 
 console.log(stockOutput(portfolio))
+
+function portfol(arr){
+let res = []
+function getHash(key){
+let total = 0;
+for(let char of key){
+total+=char.charCodeAt()
+}
+return total%arr.length;
+}
+for(let item of arr){
+let index = getHash(item.stock);
+if(!res[index]?.name) res[index]={stock:item.stock,name:[]}
+res[index]={...res[index],count:res[index].name.length}
+addName(index,item,res[index].count);
+function addName(index,item,count){
+res[index]={stock:item.stock,name:[...res[index].name,item.name],count:count+1}
+}
+}
+return res.sort(
+    (p1, p2) => (p1.count > p2.count) ? 1 : (p1.count < p2.count) ? -1 : 0).filter(Boolean);
+}
+console.log(portfol(portfolio))
