@@ -1,0 +1,22 @@
+const names = ['vinoth','madhavan','madhan','vinoth','madhavan','vinoth']
+
+function nameCount(arr){
+let res = []
+const getIndex=(key)=>{
+let total = 0;
+for(let char of key){
+total+=char.charCodeAt();
+}
+return total % 50;
+}
+
+for(let names of arr){
+let index = getIndex(names);
+if(!res[index])res[index]=[]
+let [name=names,count=0]=res[index];
+res[index]=[name,count+=1];
+}
+return res.filter(Boolean).sort((a,b)=>b[b.length-1]-a[a.length-1])
+}
+
+console.log(nameCount(names))
